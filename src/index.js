@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-// import Avatar from "./components/Avatar/Avatar";
-import Layout from "./components/Layout/Layout";
-import "./styles.css";
+import StyledLayout from "./components/Layout/StyledLayout";
+import styled from "@emotion/styled";
+// import { ThemeProvider } from "emotion-theming";
+
+const StyledApp = styled.div`
+  font-family: sans-serif;
+  text-align: center;
+`;
+
+const colors = {
+  default: "#fff",
+  lightorange: "#fc9e2d",
+  purple: "rgb(76, 76, 111)",
+  darkpurple: "#111",
+  pink: "pink"
+};
 
 function App() {
+  const [theme, changeTheme] = useState({
+    color: colors.default
+  });
+
   return (
-    <div className="App">
+    <StyledApp>
       <h1>The Pokemons</h1>
-      <Layout />
-    </div>
+      <select
+        defaultValue={theme.color}
+        onChange={e => changeTheme({ color: e.target.value })}
+      >
+        {Object.keys(colors).map(key => (
+          <option value={colors[key]} key={key}>
+            {key}
+          </option>
+        ))}
+      </select>
+      {/* <ThemeProvider theme={theme}> */}
+      <StyledLayout />
+      {/* </ThemeProvider> */}
+    </StyledApp>
   );
 }
 

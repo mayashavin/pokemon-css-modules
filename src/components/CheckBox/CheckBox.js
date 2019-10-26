@@ -1,20 +1,30 @@
 import React from "react";
-import styles from "./CheckBox.module.scss";
+import styled from "@emotion/styled";
+
+const StyledCheckBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+`;
+
+const StyledCheckBoxLabel = styled.label`
+  margin-left: 5px;
+`;
 
 const CheckBox = props => {
   return (
-    <div className={styles.checkBox}>
+    <StyledCheckBox>
       <input
-        className={styles.checkBoxInput}
         name={props.name}
         type="checkbox"
         checked={props.checked}
         onChange={props.onChange}
       />
-      <label for={props.name} className={styles.checkBoxLabel}>
+      <StyledCheckBoxLabel htmlFor={props.name}>
         {props.label}
-      </label>
-    </div>
+      </StyledCheckBoxLabel>
+    </StyledCheckBox>
   );
 };
 
